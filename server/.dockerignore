@@ -1,0 +1,7 @@
+node_modules
+coverage
+tests
+.env
+uploads/*
+seed/data/raw
+npm-debug.log
