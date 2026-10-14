@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+package-lock.json
+server/seed/data
+docs/postman
+.mongo-data

@@ -1,0 +1,66 @@
+# Full stack with Docker:  Copy-Item .env.example .env ; docker compose up --build
+# Then seed once:          docker compose exec api node seed/seedData.js
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', 'db.adminCommand("ping")']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: ./server
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT:-5001}
+      MONGO_URI: ${MONGO_URI:-mongodb://mongo:27017/shopverse}
+      CLIENT_URL: http://localhost:${CLIENT_PORT:-5173}
+      ADMIN_URL: http://localhost:${ADMIN_PORT:-5174}
+      CORS_ORIGINS: http://localhost:${CLIENT_PORT:-5173},http://localhost:${ADMIN_PORT:-5174},http://localhost:3000
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      # Local HTTP: cookies cannot be "secure". In real production use HTTPS + COOKIE_SECURE=true.
+      COOKIE_SECURE: 'false'
+      COOKIE_SAMESITE: lax
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID:-}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET:-}
+      LOG_FORMAT: combined
+    ports:
+      - '${PORT:-5001}:${PORT:-5001}'
+    volumes:
+      - uploads:/app/uploads
+
+  client:
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:5001/api/v1}
+    restart: unless-stopped
+    depends_on: [api]
+    ports:
+      - '${CLIENT_PORT:-5173}:80'
+
+  admin:
+    build:
+      context: ./admin
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:5001/api/v1}
+    restart: unless-stopped
+    depends_on: [api]
+    ports:
+      - '${ADMIN_PORT:-5174}:80'
+
+volumes:
+  mongo-data:
+  uploads:

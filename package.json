@@ -1,0 +1,45 @@
+{
+  "name": "orderit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OrderIt (ShopVerse) - MERN e-commerce platform with customer store, admin dashboard and AI assistant",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "predev": "node scripts/check-ports.js",
+    "dev": "concurrently -k -n api,client,admin -c blue,cyan,magenta \"npm run dev --prefix server\" \"npm run dev --prefix client\" \"npm run dev --prefix admin\"",
+    "start": "npm run start --prefix server",
+    "db:check": "node scripts/check-mongo.js",
+    "db:local": "node scripts/local-mongo.js",
+    "seed": "node server/seed/seedData.js",
+    "seed:destroy": "node server/seed/seedData.js --destroy",
+    "dataset:build": "node server/seed/pipeline/run.js",
+    "images:validate": "node server/seed/pipeline/validateImages.js",
+    "test": "npm test --prefix server",
+    "test:all": "npm test --prefix server && npm run build",
+    "build": "npm run build --prefix client && npm run build --prefix admin",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "docs:generate": "node server/docs/generatePostman.js && node server/docs/generateApiMd.js",
+    "dataset:kaggle": "node server/seed/pipeline/kaggle.js",
+    "dataset:licensed-images": "node server/seed/pipeline/findLicensedImages.js",
+    "smoke": "node scripts/smoke-test.js",
+    "clean": "rimraf client/dist admin/dist server/coverage"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^10.0.6",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "rimraf": "^6.1.3"
+  }
+}
