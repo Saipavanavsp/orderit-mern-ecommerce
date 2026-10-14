@@ -1,0 +1,2620 @@
+{
+  "info": {
+    "name": "OrderIt API",
+    "description": "Generated from server/docs/openapi.js. Postman keeps HTTP-only cookies automatically, so log in once and the other requests are authenticated.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5001/api/v1"
+    },
+    {
+      "key": "productSlug",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "orderId",
+      "value": ""
+    },
+    {
+      "key": "id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET /health - Service and database health check",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Service and database health check"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Admin login (sets admin cookies)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@shopverse.com\",\n  \"password\": \"ShopVerse@Admin2026\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/register - Register a customer account (sets auth cookies)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Register a customer account (sets auth cookies)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Customer\",\n  \"email\": \"test.customer@example.com\",\n  \"password\": \"Customer@123\",\n  \"phone\": \"9876543210\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/login - Log in (rate limited, account lockout after 5 failures). Send X-Client-App: admin from the admin app",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Log in (rate limited, account lockout after 5 failures). Send X-Client-App: admin from the admin app",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"aarav.sharma@example.com\",\n  \"password\": \"Customer@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/refresh - Rotate the refresh token cookie and issue a new access token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "refresh"
+              ]
+            },
+            "description": "Rotate the refresh token cookie and issue a new access token"
+          }
+        },
+        {
+          "name": "POST /auth/logout - Revoke the refresh token and clear cookies",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Revoke the refresh token and clear cookies"
+          }
+        },
+        {
+          "name": "GET /auth/me - Current user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Current user (requires login)"
+          }
+        },
+        {
+          "name": "GET /auth/session - Session bootstrap: always 200 with user or null; refreshes an expired access token from the refresh cookie",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/session",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "session"
+              ]
+            },
+            "description": "Session bootstrap: always 200 with user or null; refreshes an expired access token from the refresh cookie"
+          }
+        },
+        {
+          "name": "POST /auth/forgot-password - E-mail a password reset link (always 200)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            },
+            "description": "E-mail a password reset link (always 200)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"aarav.sharma@example.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/reset-password/{token} - Reset password with the e-mailed token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password/{{resetToken}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password",
+                "{{resetToken}}"
+              ]
+            },
+            "description": "Reset password with the e-mailed token",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"NewPass@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /auth/change-password - Change password (signs out other sessions)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/change-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "change-password"
+              ]
+            },
+            "description": "Change password (signs out other sessions) (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"Customer@123\",\n  \"newPassword\": \"Customer@456\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "GET /users/me - Get my profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            },
+            "description": "Get my profile (requires login)"
+          }
+        },
+        {
+          "name": "PUT /users/me - Update my profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            },
+            "description": "Update my profile (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Aarav Sharma\",\n  \"phone\": \"9810012345\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /users/me/addresses - Add an address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/me/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                "addresses"
+              ]
+            },
+            "description": "Add an address (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Aarav Sharma\",\n  \"phone\": \"9810012345\",\n  \"line1\": \"B-42, Malviya Nagar\",\n  \"city\": \"New Delhi\",\n  \"state\": \"Delhi\",\n  \"postalCode\": \"110017\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /users/me/addresses/{addressId} - Update an address",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/me/addresses/{{addressId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                "addresses",
+                "{{addressId}}"
+              ]
+            },
+            "description": "Update an address (requires login)"
+          }
+        },
+        {
+          "name": "DELETE /users/me/addresses/{addressId} - Delete an address",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/me/addresses/{{addressId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                "addresses",
+                "{{addressId}}"
+              ]
+            },
+            "description": "Delete an address (requires login)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "GET /notifications - List my notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications"
+              ]
+            },
+            "description": "List my notifications (requires login)"
+          }
+        },
+        {
+          "name": "PUT /notifications/read-all - Mark all notifications read",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/read-all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "read-all"
+              ]
+            },
+            "description": "Mark all notifications read (requires login)"
+          }
+        },
+        {
+          "name": "PUT /notifications/{id}/read - Mark one notification read",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/{{id}}/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "{{id}}",
+                "read"
+              ]
+            },
+            "description": "Mark one notification read (requires login)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "GET /products - List products: search, category, brand, price, rating, sort, pagination, facets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products?search=samsung&category=mobiles&minPrice=10000&maxPrice=40000&rating=4&sort=price_asc&page=1&limit=12",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "samsung"
+                },
+                {
+                  "key": "category",
+                  "value": "mobiles"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "10000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "40000"
+                },
+                {
+                  "key": "rating",
+                  "value": "4"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_asc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "12"
+                }
+              ]
+            },
+            "description": "List products: search, category, brand, price, rating, sort, pagination, facets"
+          }
+        },
+        {
+          "name": "GET /products/home - Home page sections (featured, deals, new arrivals, top rated, categories)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/home",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "home"
+              ]
+            },
+            "description": "Home page sections (featured, deals, new arrivals, top rated, categories)"
+          }
+        },
+        {
+          "name": "GET /products/suggestions - Search-as-you-type suggestions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/suggestions?q=gal",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "suggestions"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "gal"
+                }
+              ]
+            },
+            "description": "Search-as-you-type suggestions"
+          }
+        },
+        {
+          "name": "GET /products/{slug} - Product detail by slug",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{productSlug}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{productSlug}}"
+              ]
+            },
+            "description": "Product detail by slug"
+          }
+        },
+        {
+          "name": "GET /products/{slug}/related - \"You may also like\" (content-based + co-purchase)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{productSlug}}/related",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{productSlug}}",
+                "related"
+              ]
+            },
+            "description": "\"You may also like\" (content-based + co-purchase)"
+          }
+        },
+        {
+          "name": "POST /products - Create product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ]
+            },
+            "description": "Create product (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "PUT /products/{id} - Update product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{id}}"
+              ]
+            },
+            "description": "Update product (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "DELETE /products/{id} - Delete product (removes reviews, cart and wishlist references)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete product (removes reviews, cart and wishlist references) (admin - log in with \"Admin login\" first)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "GET /categories - List categories with product counts (?all=true for admins)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "List categories with product counts (?all=true for admins)"
+          }
+        },
+        {
+          "name": "GET /categories/{slug} - Category by slug",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/{{productSlug}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                "{{productSlug}}"
+              ]
+            },
+            "description": "Category by slug"
+          }
+        },
+        {
+          "name": "POST /categories - Create category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Create category (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Gaming\",\n  \"description\": \"Consoles and accessories\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /categories/{id} - Update category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                "{{id}}"
+              ]
+            },
+            "description": "Update category (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "DELETE /categories/{id} - Delete category (blocked while products use it)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete category (blocked while products use it) (admin - log in with \"Admin login\" first)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Brands",
+      "item": [
+        {
+          "name": "GET /brands - List brands (optionally ?category=slug)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/brands",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brands"
+              ]
+            },
+            "description": "List brands (optionally ?category=slug)"
+          }
+        },
+        {
+          "name": "POST /brands - Create brand",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/brands",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brands"
+              ]
+            },
+            "description": "Create brand (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nothing\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /brands/{id} - Update brand",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/brands/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brands",
+                "{{id}}"
+              ]
+            },
+            "description": "Update brand (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "DELETE /brands/{id} - Delete brand (blocked while products use it)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/brands/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brands",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete brand (blocked while products use it) (admin - log in with \"Admin login\" first)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "GET /cart - Get my cart with live prices, coupon and totals",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart"
+              ]
+            },
+            "description": "Get my cart with live prices, coupon and totals (requires login)"
+          }
+        },
+        {
+          "name": "DELETE /cart - Clear my cart",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart"
+              ]
+            },
+            "description": "Clear my cart (requires login)"
+          }
+        },
+        {
+          "name": "POST /cart/items - Add item (stock checked)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart",
+                "items"
+              ]
+            },
+            "description": "Add item (stock checked) (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /cart/items/{productId} - Update item quantity",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart/items/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart",
+                "items",
+                "{{productId}}"
+              ]
+            },
+            "description": "Update item quantity (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE /cart/items/{productId} - Remove item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart/items/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart",
+                "items",
+                "{{productId}}"
+              ]
+            },
+            "description": "Remove item (requires login)"
+          }
+        },
+        {
+          "name": "POST /cart/coupon - Apply coupon to cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart/coupon",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart",
+                "coupon"
+              ]
+            },
+            "description": "Apply coupon to cart (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"WELCOME10\"\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE /cart/coupon - Remove coupon",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cart/coupon",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cart",
+                "coupon"
+              ]
+            },
+            "description": "Remove coupon (requires login)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Wishlist",
+      "item": [
+        {
+          "name": "GET /wishlist - My wishlist",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wishlist",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlist"
+              ]
+            },
+            "description": "My wishlist (requires login)"
+          }
+        },
+        {
+          "name": "POST /wishlist/{productId} - Add to wishlist (idempotent)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wishlist/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlist",
+                "{{productId}}"
+              ]
+            },
+            "description": "Add to wishlist (idempotent) (requires login)"
+          }
+        },
+        {
+          "name": "DELETE /wishlist/{productId} - Remove from wishlist",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/wishlist/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlist",
+                "{{productId}}"
+              ]
+            },
+            "description": "Remove from wishlist (requires login)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Coupons",
+      "item": [
+        {
+          "name": "GET /coupons/available - Active, non-expired coupons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/coupons/available",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                "available"
+              ]
+            },
+            "description": "Active, non-expired coupons"
+          }
+        },
+        {
+          "name": "POST /coupons/validate - Check a coupon against a subtotal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/coupons/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                "validate"
+              ]
+            },
+            "description": "Check a coupon against a subtotal (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"WELCOME10\",\n  \"subtotal\": 15000\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "GET /reviews/my - My reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/my",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "my"
+              ]
+            },
+            "description": "My reviews (requires login)"
+          }
+        },
+        {
+          "name": "GET /reviews/product/{productId} - Approved reviews + rating distribution",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/product/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "product",
+                "{{productId}}"
+              ]
+            },
+            "description": "Approved reviews + rating distribution"
+          }
+        },
+        {
+          "name": "POST /reviews/{productId} - Write a review (pending moderation)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "{{productId}}"
+              ]
+            },
+            "description": "Write a review (pending moderation) (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"title\": \"Great value\",\n  \"comment\": \"Battery easily lasts a full day and the camera is sharp.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /reviews/{id} - Edit my review (re-moderated)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "{{id}}"
+              ]
+            },
+            "description": "Edit my review (re-moderated) (requires login)"
+          }
+        },
+        {
+          "name": "DELETE /reviews/{id} - Delete my review",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete my review (requires login)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "POST /orders - Place order from cart (server-side totals, coupon re-validated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Place order from cart (server-side totals, coupon re-validated) (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentMethod\": \"razorpay\",\n  \"shippingAddress\": {\n    \"fullName\": \"Aarav Sharma\",\n    \"phone\": \"9810012345\",\n    \"line1\": \"B-42, Malviya Nagar\",\n    \"city\": \"New Delhi\",\n    \"state\": \"Delhi\",\n    \"postalCode\": \"110017\"\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /orders/my - My orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/my",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "my"
+              ]
+            },
+            "description": "My orders (requires login)"
+          }
+        },
+        {
+          "name": "GET /orders/{id} - Order detail with status history",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}"
+              ]
+            },
+            "description": "Order detail with status history (requires login)"
+          }
+        },
+        {
+          "name": "PUT /orders/{id}/pay - Verify Razorpay signature and mark paid (decrements stock)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/{{id}}/pay",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}",
+                "pay"
+              ]
+            },
+            "description": "Verify Razorpay signature and mark paid (decrements stock) (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"razorpayOrderId\": \"{{providerOrderId}}\",\n  \"razorpayPaymentId\": \"{{paymentId}}\",\n  \"razorpaySignature\": \"{{signature}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /orders/{id}/cancel - Cancel order (restores stock, refunds if paid)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/{{id}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "{{id}}",
+                "cancel"
+              ]
+            },
+            "description": "Cancel order (restores stock, refunds if paid) (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Ordered by mistake\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "GET /payments/config - Payment mode (razorpay or simulation) and public key id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payments/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payments",
+                "config"
+              ]
+            },
+            "description": "Payment mode (razorpay or simulation) and public key id"
+          }
+        },
+        {
+          "name": "POST /payments/create-order - Create a Razorpay (test) / simulated payment order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payments/create-order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payments",
+                "create-order"
+              ]
+            },
+            "description": "Create a Razorpay (test) / simulated payment order (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /payments/simulate - Simulation mode only: returns a signed payment result",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payments/simulate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payments",
+                "simulate"
+              ]
+            },
+            "description": "Simulation mode only: returns a signed payment result (requires login)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"{{orderId}}\",\n  \"providerOrderId\": \"{{providerOrderId}}\",\n  \"outcome\": \"success\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "GET /admin/dashboard - Dashboard KPIs, 30-day sales, top products, low stock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/dashboard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "dashboard"
+              ]
+            },
+            "description": "Dashboard KPIs, 30-day sales, top products, low stock (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/analytics/summary - KPI summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/analytics/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "analytics",
+                "summary"
+              ]
+            },
+            "description": "KPI summary (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/analytics/sales - Revenue/orders time series",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/analytics/sales",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "analytics",
+                "sales"
+              ]
+            },
+            "description": "Revenue/orders time series (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/analytics/top-products - Top products by revenue",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/analytics/top-products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "analytics",
+                "top-products"
+              ]
+            },
+            "description": "Top products by revenue (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/analytics/categories - Revenue by category",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/analytics/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "analytics",
+                "categories"
+              ]
+            },
+            "description": "Revenue by category (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/analytics/breakdowns - Order status and payment method breakdowns",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/analytics/breakdowns",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "analytics",
+                "breakdowns"
+              ]
+            },
+            "description": "Order status and payment method breakdowns (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/products - All products incl. inactive, with filters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products"
+              ]
+            },
+            "description": "All products incl. inactive, with filters (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "PUT /admin/products/bulk-status - Bulk activate/deactivate products",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products/bulk-status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "bulk-status"
+              ]
+            },
+            "description": "Bulk activate/deactivate products (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"{{productId}}\"\n  ],\n  \"isActive\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /admin/products/{id} - Product by id (incl. inactive)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "{{id}}"
+              ]
+            },
+            "description": "Product by id (incl. inactive) (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "PATCH /admin/products/{id}/stock - Set stock level",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products/{{id}}/stock",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "{{id}}",
+                "stock"
+              ]
+            },
+            "description": "Set stock level (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stock\": 25\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /admin/inventory/low-stock - Low-stock and out-of-stock products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/inventory/low-stock",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "inventory",
+                "low-stock"
+              ]
+            },
+            "description": "Low-stock and out-of-stock products (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/orders - All orders with filters and status counts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders"
+              ]
+            },
+            "description": "All orders with filters and status counts (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/orders/{id} - Order detail with payments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders",
+                "{{id}}"
+              ]
+            },
+            "description": "Order detail with payments (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "PUT /admin/orders/{id}/status - Change status (processing, shipped, delivered, cancelled)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders/{{id}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders",
+                "{{id}}",
+                "status"
+              ]
+            },
+            "description": "Change status (processing, shipped, delivered, cancelled) (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"shipped\",\n  \"trackingNumber\": \"BLUEDART123456\",\n  \"note\": \"Packed and handed to courier\"\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /admin/users - Users with order stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            },
+            "description": "Users with order stats (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/users/{id} - User with recent orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "{{id}}"
+              ]
+            },
+            "description": "User with recent orders (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "PUT /admin/users/{id}/status - Activate / deactivate user",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/{{id}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "{{id}}",
+                "status"
+              ]
+            },
+            "description": "Activate / deactivate user (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /admin/users/{id}/role - Change user role",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/{{id}}/role",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "{{id}}",
+                "role"
+              ]
+            },
+            "description": "Change user role (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"customer\"\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /admin/reviews - Reviews for moderation",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reviews"
+              ]
+            },
+            "description": "Reviews for moderation (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "PUT /admin/reviews/{id}/status - Approve / reject review",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews/{{id}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reviews",
+                "{{id}}",
+                "status"
+              ]
+            },
+            "description": "Approve / reject review (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE /admin/reviews/{id} - Delete review",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reviews",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete review (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/coupons - List coupons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "coupons"
+              ]
+            },
+            "description": "List coupons (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "POST /admin/coupons - Create coupon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "coupons"
+              ]
+            },
+            "description": "Create coupon (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"DIWALI25\",\n  \"description\": \"25% off, up to ₹2,500\",\n  \"discountType\": \"percent\",\n  \"discountValue\": 25,\n  \"maxDiscount\": 2500,\n  \"minOrderValue\": 4999,\n  \"expiresAt\": \"2030-12-31\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT /admin/coupons/{id} - Update coupon",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/coupons/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "coupons",
+                "{{id}}"
+              ]
+            },
+            "description": "Update coupon (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "DELETE /admin/coupons/{id} - Delete coupon",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/coupons/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "coupons",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete coupon (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/export/orders - Export orders as CSV",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/export/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "export",
+                "orders"
+              ]
+            },
+            "description": "Export orders as CSV (admin - log in with \"Admin login\" first)"
+          }
+        },
+        {
+          "name": "GET /admin/export/products - Export products as CSV",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/export/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "export",
+                "products"
+              ]
+            },
+            "description": "Export products as CSV (admin - log in with \"Admin login\" first)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Uploads",
+      "item": [
+        {
+          "name": "POST /uploads/images - Upload up to 5 product images (multipart field \"images\"; JPG/PNG/WEBP; Cloudinary or local)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Client-App",
+                "value": "admin"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/uploads/images",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "uploads",
+                "images"
+              ]
+            },
+            "description": "Upload up to 5 product images (multipart field \"images\"; JPG/PNG/WEBP; Cloudinary or local) (admin - log in with \"Admin login\" first)",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI",
+      "item": [
+        {
+          "name": "GET /ai/status - Which assistant engine is active (claude / rule-based)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai",
+                "status"
+              ]
+            },
+            "description": "Which assistant engine is active (claude / rule-based)"
+          }
+        },
+        {
+          "name": "POST /ai/chat - ShopVerse Assistant chat (recommends only catalogue products)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai/chat",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai",
+                "chat"
+              ]
+            },
+            "description": "ShopVerse Assistant chat (recommends only catalogue products)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Suggest a phone under 20000 with a good camera\"\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "GET /ai/search - Natural-language search, e.g. \"phone under 20000 with good camera\"",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai/search?q=phone%20under%2020000%20with%20good%20camera",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "phone%20under%2020000%20with%20good%20camera"
+                }
+              ]
+            },
+            "description": "Natural-language search, e.g. \"phone under 20000 with good camera\""
+          }
+        },
+        {
+          "name": "GET /ai/recommendations/me - Personalised recommendations from my orders and wishlist",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai/recommendations/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai",
+                "recommendations",
+                "me"
+              ]
+            },
+            "description": "Personalised recommendations from my orders and wishlist (requires login)"
+          }
+        },
+        {
+          "name": "GET /ai/recommendations/{productId} - Item-to-item recommendations with reasons",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai/recommendations/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai",
+                "recommendations",
+                "{{productId}}"
+              ]
+            },
+            "description": "Item-to-item recommendations with reasons"
+          }
+        }
+      ]
+    }
+  ]
+}
