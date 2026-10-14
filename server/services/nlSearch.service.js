@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Natural-language query parser: "phone under 20000 with good camera" -> structured filters.
 import { Brand } from '../models/Brand.js';
 import { listProducts } from './product.service.js';

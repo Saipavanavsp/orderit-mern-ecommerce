@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { catalogApi, aiApi } from '../services/index.js';

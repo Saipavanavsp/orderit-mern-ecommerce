@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Generates docs/API.md from the OpenAPI route registry (keeps the docs in sync with the code).
 //   npm run docs:generate
 import fs from 'node:fs';
@@ -9,6 +10,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const ACCESS = { public: 'Public', optional: 'Public (admin sees more)', user: 'Logged in', admin: 'Admin' };
 
 const intro = `# API Reference
+
+**Author:** Sai Pavan ([github.com/Saipavanavsp](https://github.com/Saipavanavsp))
 
 Base URL: \`http://localhost:5001/api/v1\` · Interactive docs (Swagger UI): <http://localhost:5001/api-docs> · Raw spec: <http://localhost:5001/api-docs.json> · Postman: \`docs/postman/OrderIt.postman_collection.json\`
 

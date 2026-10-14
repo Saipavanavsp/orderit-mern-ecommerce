@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Full dataset pipeline: download (stream) -> clean/normalise -> validate images -> curated JSON.
 //   npm run dataset:build              (all steps)
 //   npm run dataset:build -- --skip-download   (re-clean existing raw/ files)

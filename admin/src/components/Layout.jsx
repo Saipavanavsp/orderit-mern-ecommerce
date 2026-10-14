@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { useState } from 'react';
 import { NavLink, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,6 +39,10 @@ function Sidebar({ onNavigate }) {
           </li>
         ))}
       </ul>
+      <p className="border-t border-line px-4 py-3 text-xs text-muted">
+        Developed by{' '}
+        <a href="https://github.com/Saipavanavsp" target="_blank" rel="noreferrer" className="font-medium text-fg hover:text-primary">Sai Pavan</a>
+      </p>
     </nav>
   );
 }

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Detects whether MongoDB is reachable before seeding. Exits 1 with Windows instructions if not.
 import net from 'node:net';
 import { pathToFileURL } from 'node:url';

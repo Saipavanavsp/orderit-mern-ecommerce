@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Minimal RFC 4180 CSV writer with spreadsheet formula-injection protection.
 const UTF8_BOM = String.fromCharCode(0xfeff); // lets Excel open UTF-8 (rupee sign, accents) correctly
 

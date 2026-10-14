@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Step 2 - clean & normalise candidates into our product shape and pick the best per category.
 // Input: raw/candidates.json, raw/reviews.raw.json  ->  Output: raw/products.cleaned.json
 import crypto from 'node:crypto';

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // "ShopVerse Assistant": answers shopping questions using ONLY products from our catalog.
 // Uses the Anthropic API server-side when ANTHROPIC_API_KEY is set; otherwise a rule-based engine.
 import Anthropic from '@anthropic-ai/sdk';

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Optional source: Flipkart products dataset on Kaggle (PromptCloudHQ/flipkart-products, CC BY-SA 4.0).
 // Requires the official Kaggle CLI + your API token. Usage:  node server/seed/pipeline/kaggle.js
 // Produces raw/candidates.kaggle.json in the same shape as download.js, merged by clean.js when present.

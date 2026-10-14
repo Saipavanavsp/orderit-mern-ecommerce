@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as cartService from '../services/cart.service.js';
 import * as wishlistService from '../services/wishlist.service.js';
 import * as couponService from '../services/coupon.service.js';

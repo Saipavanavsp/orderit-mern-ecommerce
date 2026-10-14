@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import mongoSanitize from 'express-mongo-sanitize';
 import { filterXSS } from 'xss';
 

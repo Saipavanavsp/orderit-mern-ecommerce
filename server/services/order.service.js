@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import crypto from 'node:crypto';
 import { Order } from '../models/Order.js';
 import { User } from '../models/User.js';

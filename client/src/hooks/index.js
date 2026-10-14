@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { errorMessage } from '../services/api.js';
 

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Notification } from '../models/Notification.js';
 import { ApiError } from '../utils/ApiError.js';
 import { logger } from '../utils/logger.js';

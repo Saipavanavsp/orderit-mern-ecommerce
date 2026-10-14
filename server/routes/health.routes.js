@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Router } from 'express';
 import { dbState } from '../config/db.js';
 import { env } from '../config/env.js';

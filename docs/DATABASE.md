@@ -1,5 +1,7 @@
 # Database Design
 
+**Author:** Sai Pavan ([github.com/Saipavanavsp](https://github.com/Saipavanavsp))
+
 MongoDB (`shopverse` database) accessed through Mongoose 9. Eleven collections. All documents have `createdAt` / `updatedAt` timestamps.
 
 ## Entity-relationship diagram

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Runs a real MongoDB server (binary downloaded by mongodb-memory-server) on 127.0.0.1:27017
 // with persistent storage in .mongo-data/. Useful on Windows machines without MongoDB installed.
 import fs from 'node:fs';

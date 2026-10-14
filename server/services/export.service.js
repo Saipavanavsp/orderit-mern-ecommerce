@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Order } from '../models/Order.js';
 import { Product } from '../models/Product.js';
 import { toCSV } from '../utils/csv.js';

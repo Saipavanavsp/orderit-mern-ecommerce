@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { useState } from 'react';
 import { couponApi } from '../services/index.js';
 import { errorMessage, fieldErrors } from '../services/api.js';

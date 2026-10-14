@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as userService from '../services/user.service.js';
 import * as notificationService from '../services/notification.service.js';
 import { asyncHandler } from '../utils/asyncHandler.js';

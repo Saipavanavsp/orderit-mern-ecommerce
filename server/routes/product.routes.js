@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Router } from 'express';
 import * as ctrl from '../controllers/product.controller.js';
 import { adminOnly } from '../middleware/auth.js';

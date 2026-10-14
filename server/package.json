@@ -1,6 +1,8 @@
 {
   "name": "orderit-server",
   "version": "1.0.0",
+  "author": "Sai Pavan (https://github.com/Saipavanavsp)",
+  "license": "UNLICENSED",
   "private": true,
   "description": "OrderIt REST API (Express + MongoDB)",
   "type": "module",

@@ -1,6 +1,8 @@
 {
   "name": "orderit",
   "version": "1.0.0",
+  "author": "Sai Pavan (https://github.com/Saipavanavsp)",
+  "license": "UNLICENSED",
   "private": true,
   "description": "OrderIt (ShopVerse) - MERN e-commerce platform with customer store, admin dashboard and AI assistant",
   "type": "module",

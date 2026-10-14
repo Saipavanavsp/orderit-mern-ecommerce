@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Pre-deployment helper: finds freely-licensed photos on Wikimedia Commons that match each product
 // title (brand + model words) and writes CANDIDATES for manual review. Nothing is auto-approved:
 // copy the entries you have checked into server/seed/data/licensed-images.json, then set

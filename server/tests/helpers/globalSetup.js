@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 // One in-memory MongoDB for the whole run; each test file uses its own database name.

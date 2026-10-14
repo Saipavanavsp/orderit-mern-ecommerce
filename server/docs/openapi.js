@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // OpenAPI 3 spec built from one route registry. Request schemas are generated from the SAME Zod
 // validators the routes use, so docs cannot drift from validation. tests/docs.test.js asserts that
 // every Express route is listed here. The Postman collection is generated from this registry too.
@@ -187,7 +188,9 @@ export function buildOpenApiSpec() {
       title: 'OrderIt API',
       version: '1.0.0',
       description:
-        'REST API for the OrderIt (ShopVerse) e-commerce platform. Authentication uses HTTP-only cookies (`oi_access` / `oi_refresh`; admin app: `oi_admin_access` / `oi_admin_refresh`). Use "Try it out" after logging in via POST /auth/login in the same browser, or send `Authorization: Bearer <access token>`.',
+        'REST API for the OrderIt (ShopVerse) e-commerce platform. Authentication uses HTTP-only cookies (`oi_access` / `oi_refresh`; admin app: `oi_admin_access` / `oi_admin_refresh`). Use "Try it out" after logging in via POST /auth/login in the same browser, or send `Authorization: Bearer <access token>`.\n\nDeveloped by **Sai Pavan**.',
+      contact: { name: 'Sai Pavan', url: 'https://github.com/Saipavanavsp' },
+      license: { name: 'All rights reserved - see LICENSE', url: 'https://github.com/Saipavanavsp/orderit-mern-ecommerce/blob/main/LICENSE' },
     },
     servers: [{ url: `http://localhost:${env.port}${env.apiPrefix}`, description: 'Local development' }],
     tags: [...new Set(ROUTES.map((r) => r[2]))].map((name) => ({ name })),

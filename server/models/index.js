@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 export { User } from './User.js';
 export { Category } from './Category.js';
 export { Brand } from './Brand.js';

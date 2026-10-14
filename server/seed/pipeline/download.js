@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Step 1 - download (stream) candidates from the Hugging Face "Amazon Reviews 2023" dataset.
 // Writes server/seed/data/raw/candidates.json and raw/reviews.raw.json.
 import fs from 'node:fs';

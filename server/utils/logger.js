@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Small leveled logger. Silent during tests unless LOG_TESTS=true.
 const silent = process.env.NODE_ENV === 'test' && process.env.LOG_TESTS !== 'true';
 const stamp = () => new Date().toISOString();

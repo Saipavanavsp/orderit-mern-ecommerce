@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { formatAmount } from '../utils/format.js';
 
 export function OrderSummary({ totals, couponCode, children, title = 'Price details' }) {

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from './Icon.jsx';

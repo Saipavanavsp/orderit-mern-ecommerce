@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as categoryService from '../services/category.service.js';
 import * as brandService from '../services/brand.service.js';
 import { asyncHandler } from '../utils/asyncHandler.js';

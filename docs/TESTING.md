@@ -1,5 +1,7 @@
 # Testing
 
+**Author:** Sai Pavan ([github.com/Saipavanavsp](https://github.com/Saipavanavsp))
+
 ## How to run (PowerShell, from the repository root)
 
 ```powershell

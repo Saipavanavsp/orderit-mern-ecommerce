@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Link } from 'react-router-dom';
 
 export function Footer({ categories }) {
@@ -34,7 +35,9 @@ export function Footer({ categories }) {
         </div>
       </div>
       <div className="border-t border-line py-4 text-center text-xs text-muted">
-        © {new Date().getFullYear()} OrderIt. BTech capstone project - product data from public datasets for educational use.
+        © {new Date().getFullYear()} OrderIt. Designed &amp; developed by{' '}
+        <a href="https://github.com/Saipavanavsp" target="_blank" rel="noreferrer" className="font-medium text-fg hover:text-primary">Sai Pavan</a>.
+        BTech capstone project - product data from public datasets for educational use.
       </div>
     </footer>
   );

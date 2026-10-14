@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';

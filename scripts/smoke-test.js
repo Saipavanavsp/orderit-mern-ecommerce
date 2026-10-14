@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // End-to-end smoke test against the RUNNING app (start it first with "npm run dev").
 //   npm run smoke
 // Flow: health -> register -> login -> browse -> search -> NL search -> add to cart -> coupon ->

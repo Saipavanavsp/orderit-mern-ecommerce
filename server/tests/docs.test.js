@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import request from 'supertest';
 import { app, API } from './helpers/setup.js';
 import { MOUNTS } from '../routes/index.js';

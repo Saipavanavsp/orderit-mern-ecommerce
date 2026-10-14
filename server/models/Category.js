@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import mongoose from 'mongoose';
 import { slugify } from '../utils/slugify.js';
 

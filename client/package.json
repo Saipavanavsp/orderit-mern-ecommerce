@@ -1,6 +1,8 @@
 {
   "name": "orderit-client",
   "version": "1.0.0",
+  "author": "Sai Pavan (https://github.com/Saipavanavsp)",
+  "license": "UNLICENSED",
   "private": true,
   "type": "module",
   "scripts": {

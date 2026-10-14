@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as assistant from '../services/assistant.service.js';
 import * as recommendations from '../services/recommendation.service.js';
 import { naturalLanguageSearch } from '../services/nlSearch.service.js';

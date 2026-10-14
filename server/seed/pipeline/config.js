@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Dataset pipeline configuration. See docs/DATASETS.md for sources, licences and the method.
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

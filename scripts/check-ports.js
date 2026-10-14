@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Verifies that the API, customer and admin ports are free before `npm run dev`.
 // Probes by connecting on IPv4 and IPv6 loopback: on Windows a test *bind* on 0.0.0.0 can succeed even
 // when another process listens on [::1] (Vite) or [::], so a successful connection means "busy".

@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Minimal .env reader used by root scripts (they run before any package is installed).
 import fs from 'node:fs';
 import path from 'node:path';

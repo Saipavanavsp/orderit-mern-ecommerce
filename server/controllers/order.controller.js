@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as orderService from '../services/order.service.js';
 import * as paymentService from '../services/payment.service.js';
 import { asyncHandler } from '../utils/asyncHandler.js';

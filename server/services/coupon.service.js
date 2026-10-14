@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Coupon } from '../models/Coupon.js';
 import { ApiError } from '../utils/ApiError.js';
 import { formatINR, round2 } from '../utils/format.js';

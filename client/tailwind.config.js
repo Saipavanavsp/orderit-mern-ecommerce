@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 /** Design tokens: cool, muted, flat. Colors resolve to CSS variables (see src/index.css) for light/dark. */
 const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
 

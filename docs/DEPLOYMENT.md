@@ -1,5 +1,7 @@
 # Deployment Guide
 
+**Author:** Sai Pavan ([github.com/Saipavanavsp](https://github.com/Saipavanavsp))
+
 OrderIt is three deployables: the **API** (`server/`), the **customer storefront** (`client/`) and the **admin dashboard** (`admin/`), plus a **MongoDB** database. All URLs, ports and secrets come from environment variables; nothing is hard-coded.
 
 Recommended free/low-cost stack: **MongoDB Atlas** (database) + **Render** or **Railway** (API) + **Vercel** or **Netlify** (client and admin).

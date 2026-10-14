@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Step 3 - validate every product image URL, drop failures, write the curated seed files + report.
 // Input:  raw/products.cleaned.json (or data/products.json when re-validating the curated set)
 // Output: data/products.json, data/reviews.json, docs/IMAGE_REPORT.md

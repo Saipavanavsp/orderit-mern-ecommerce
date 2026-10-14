@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { configureStore, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { authApi } from '../services/index.js';
 import { errorMessage } from '../services/api.js';

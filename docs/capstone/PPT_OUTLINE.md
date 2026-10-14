@@ -1,8 +1,10 @@
 # Presentation Outline (15-18 slides, ~15 minutes)
 
+**Author:** Sai Pavan
+
 | # | Slide | Content | Visual |
 |---|---|---|---|
-| 1 | Title | OrderIt - AI-assisted MERN e-commerce platform; team, guide, department, year | Logo + storefront screenshot |
+| 1 | Title | OrderIt - MERN e-commerce platform with intelligent product discovery; presented by Sai Pavan, guide, department, year | Logo + storefront screenshot |
 | 2 | Problem | Expensive, insecure DIY stores; weak keyword search; fake demo catalogues | Three icons with one line each |
 | 3 | Objectives | 8 objectives from the report (secure API, two apps, payments, inventory, AI, data pipeline, tests) | Checklist |
 | 4 | Scope | In scope vs out of scope | Two-column table |

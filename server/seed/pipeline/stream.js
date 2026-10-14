@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Streams a remote JSONL file line by line using HTTP Range requests (official Hugging Face
 // "resolve" download URLs). Range chunks are much faster than one long-lived stream on Windows and
 // let us stop as soon as we have enough data, without downloading multi-GB files.

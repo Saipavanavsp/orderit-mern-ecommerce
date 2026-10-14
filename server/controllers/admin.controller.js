@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as analytics from '../services/analytics.service.js';
 import * as adminUsers from '../services/adminUser.service.js';
 import * as exportService from '../services/export.service.js';

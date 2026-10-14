@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { env } from './config/env.js';
 import { connectDB, disconnectDB } from './config/db.js';
 import { createApp } from './app.js';
@@ -16,7 +17,7 @@ async function start() {
 
   const app = createApp();
   const server = app.listen(env.port, () => {
-    logger.info(`OrderIt API listening on http://localhost:${env.port}${env.apiPrefix} (${env.nodeEnv})`);
+    logger.info(`OrderIt API listening on http://localhost:${env.port}${env.apiPrefix} (${env.nodeEnv}) - developed by Sai Pavan`);
     logger.info(`Swagger docs at http://localhost:${env.port}/api-docs`);
   });
 

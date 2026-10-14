@@ -6,6 +6,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?logo=mongodb&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwindcss&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-109%20passing-brightgreen)
+![License](https://img.shields.io/badge/license-All%20rights%20reserved-red)
 
 **Author:** Sai Pavan ([@Saipavanavsp](https://github.com/Saipavanavsp))
 
@@ -188,3 +189,7 @@ docs/     API, DATABASE, DEPLOYMENT, TESTING, DATASETS, IMAGE_REPORT, postman/, 
 **Sai Pavan**: [github.com/Saipavanavsp](https://github.com/Saipavanavsp)
 
 This project was built as a BTech capstone. The screenshots in [docs/screenshots/](docs/screenshots) were captured from a local run with the seeded demo data.
+
+## License
+
+(c) 2026 **Sai Pavan**. All rights reserved. This repository is public for viewing only. Copying, re-uploading or presenting this project as your own work is not permitted. See [LICENSE](LICENSE).

@@ -1,6 +1,8 @@
-# OrderIt - An AI-Assisted MERN E-Commerce Platform
+# OrderIt - A MERN E-Commerce Platform with Intelligent Product Discovery
 
 **BTech Final-Year Capstone Project Report**
+
+**Author:** Sai Pavan ([github.com/Saipavanavsp](https://github.com/Saipavanavsp))
 
 ---
 
@@ -18,7 +20,7 @@ Small and mid-sized Indian retailers that want to sell online face three problem
 2. **Product discovery is weak.** Keyword search fails on how people actually ask ("a good camera phone under 20k"), and static "related products" lists ignore what customers really buy together.
 3. **Catalogue data quality is poor.** Demo stores are filled with fake products whose images do not match their names, which undermines trust and makes testing unrealistic.
 
-OrderIt addresses these with an end-to-end reference implementation, AI-assisted discovery that is grounded in the store's own catalogue, and an auditable data pipeline with image-integrity checks.
+OrderIt addresses these with an end-to-end reference implementation, smart product discovery that is grounded in the store's own catalogue, and an auditable data pipeline with image-integrity checks.
 
 ## 3. Objectives
 
@@ -251,7 +253,7 @@ See [TESTING.md](../TESTING.md) for the full test-case table and how to run the 
 
 ## 11. Conclusion
 
-OrderIt shows that a final-year team can deliver a production-shaped e-commerce system: a layered, secure API with consistent inventory and verified payments, two polished React applications, and AI features that improve discovery without hallucinating products. Its data pipeline replaces made-up demo products with real, image-validated catalogue data. The emphasis throughout was on verifiability: generated documentation, automated tests that encode the business rules, and an end-to-end smoke test. That makes the project easy to evaluate, extend and deploy.
+OrderIt shows that a final-year student project can deliver a production-shaped e-commerce system: a layered, secure API with consistent inventory and verified payments, two polished React applications, and AI features that improve discovery without hallucinating products. Its data pipeline replaces made-up demo products with real, image-validated catalogue data. The emphasis throughout was on verifiability: generated documentation, automated tests that encode the business rules, and an end-to-end smoke test. That makes the project easy to evaluate, extend and deploy.
 
 ## References
 1. Hou, Y. et al. *Bridging Language and Items for Retrieval and Recommendation* (Amazon Reviews 2023), 2024. https://amazon-reviews-2023.github.io/
@@ -259,3 +261,7 @@ OrderIt shows that a final-year team can deliver a production-shaped e-commerce 
 3. OWASP Cheat Sheet Series - Authentication, Session Management, Input Validation. https://cheatsheetseries.owasp.org/
 4. MongoDB Manual - Text indexes; atomic operations. https://www.mongodb.com/docs/manual/
 5. Anthropic - Claude API documentation. https://docs.anthropic.com/
+
+---
+
+(c) 2026 Sai Pavan. All rights reserved.

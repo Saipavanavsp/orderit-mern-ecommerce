@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 export function slugify(text = '') {
   return String(text)
     .normalize('NFKD')

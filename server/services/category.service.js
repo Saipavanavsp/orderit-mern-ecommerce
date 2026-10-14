@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Category } from '../models/Category.js';
 import { Product } from '../models/Product.js';
 import { ApiError } from '../utils/ApiError.js';

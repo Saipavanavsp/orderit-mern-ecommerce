@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { createContext, useContext } from 'react';
 
 // Context objects and their hooks live here so provider files only export components (Fast Refresh).

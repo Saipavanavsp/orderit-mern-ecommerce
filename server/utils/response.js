@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Consistent JSON envelope: { success, message?, data, meta? }
 export function sendSuccess(res, data = null, { status = 200, message, meta } = {}) {
   const body = { success: true };

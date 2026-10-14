@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Seeds the database from the curated dataset in server/seed/data/.
 //   npm run seed            -> clears seed collections, then inserts everything
 //   npm run seed:destroy    -> only clears the collections

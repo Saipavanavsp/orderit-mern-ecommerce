@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import rateLimit from 'express-rate-limit';
 import { env } from '../config/env.js';
 

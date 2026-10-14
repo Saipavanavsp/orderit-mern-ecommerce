@@ -1,5 +1,7 @@
 # Datasets
 
+**Author:** Sai Pavan ([github.com/Saipavanavsp](https://github.com/Saipavanavsp))
+
 The catalogue (240 products, 1,379 reviews) is built from **open datasets** by a reproducible pipeline in `server/seed/pipeline/`. No website was scraped. The cleaned result is committed as `server/seed/data/products.json` and `reviews.json`, so `npm run seed` always works offline, even if the sources change or are unavailable.
 
 ## Sources

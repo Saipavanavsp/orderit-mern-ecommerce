@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { useCallback, useRef, useState } from 'react';
 import { Modal } from '../components/Modal.jsx';
 import { ConfirmContext } from './contexts.js';

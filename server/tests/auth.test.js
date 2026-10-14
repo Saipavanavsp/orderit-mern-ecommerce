@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import request from 'supertest';
 import { app, API, PASSWORD, closeTestDb, connectTestDb, createUserAgent } from './helpers/setup.js';
 import { User } from '../models/User.js';

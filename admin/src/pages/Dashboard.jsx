@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { Link } from 'react-router-dom';
 import { dashboardApi } from '../services/index.js';
 import { useAsync, useDocumentTitle } from '../hooks/index.js';

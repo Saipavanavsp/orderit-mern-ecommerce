@@ -1,5 +1,7 @@
 # Viva Questions and Answers (25)
 
+**Author:** Sai Pavan
+
 **1. What is the MERN stack and why did you choose it?**
 MongoDB, Express, React and Node.js. One language (JavaScript) runs across the whole stack, JSON flows end to end, the npm ecosystem is large, and MongoDB's flexible documents suit product data whose specifications vary by category (a phone and a shirt have different attributes).
 

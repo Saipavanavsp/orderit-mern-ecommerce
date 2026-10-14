@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // One-command setup: installs root + server + client + admin, creates .env files, seeds the DB.
 import fs from 'node:fs';
 import path from 'node:path';

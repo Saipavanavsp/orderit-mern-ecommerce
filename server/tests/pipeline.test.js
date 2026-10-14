@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import { cleanSpecs, cleanTitle, inrPrice } from '../seed/pipeline/clean.js';
 import { parsePrice, pickImages, qualifies } from '../seed/pipeline/download.js';
 import { normalizeFlipkart, parseCsv } from '../seed/pipeline/kaggle.js';

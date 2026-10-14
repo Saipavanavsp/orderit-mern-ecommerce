@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 import * as productService from '../services/product.service.js';
 import * as recommendationService from '../services/recommendation.service.js';
 import { asyncHandler } from '../utils/asyncHandler.js';

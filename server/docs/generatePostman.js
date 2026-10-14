@@ -1,3 +1,4 @@
+// OrderIt - (c) 2026 Sai Pavan (https://github.com/Saipavanavsp). All rights reserved.
 // Generates docs/postman/OrderIt.postman_collection.json from the OpenAPI route registry.
 //   npm run docs:postman
 import fs from 'node:fs';
