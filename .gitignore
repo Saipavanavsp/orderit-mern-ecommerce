@@ -9,6 +9,7 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .mongo-data/
+.vercel/
 server/uploads/*
 !server/uploads/.gitkeep
 server/seed/data/raw/
